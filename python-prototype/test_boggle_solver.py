@@ -1,5 +1,4 @@
 import pytest
-
 import boggle_solver
 
 size = 4

@@ -21,13 +21,8 @@ dice = [
     ["P", "A", "C", "E", "M", "D"],
 ]
 
-# default grid size (grids are all n*n)
-DEFAULT_SIZE = 4
 
-
-def make_grid(
-    size: int = DEFAULT_SIZE, dice: List[List[str]] = dice
-) -> List[List[str]]:
+def make_grid(size: int = 4, dice: List[List[str]] = dice) -> List[List[str]]:
     # shuffle the order of the dice
     random.shuffle(dice)
     # roll each die and store the result in a list
@@ -54,7 +49,6 @@ def search_grid(grid: List[List[str]], row_i, col_j):
 
     directions = [[-1, 0], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, 0], [1, 1], [1, -1]]
 
-    # initialize stack and visited with the upper left corner of the grid
     visited = []
     stack = []
 
@@ -66,16 +60,16 @@ def search_grid(grid: List[List[str]], row_i, col_j):
 
     while stack:
 
-        s = stack.pop()
         print(f"stack: {stack}")
         print(f"visited: {visited}")
+        s = stack.pop()
 
         for di, dj in directions:
 
             # potential coordinate of the next letter in the search
             next = [s[0] + di, s[1] + dj]
 
-            # if within it falls within the grid, then add to stack and visited
+            # if next falls within the grid, add it to stack and visited
             if (
                 (next[0] >= 0 and next[0] <= size - 1)
                 and (next[1] >= 0 and next[1] <= size - 1)
